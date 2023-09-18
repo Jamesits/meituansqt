@@ -22,6 +22,11 @@ type StaffBatchQueryResultItem struct {
 	UserId        string `json:"userId,omitempty"`
 }
 
-func (sqt *SQT) StaffBatchQuery(ctx context.Context, req *StaffBatchQueryRequest) (*[]StaffBatchQueryResultItem, *http.Response, error) {
-	return sqtapi.WrappedApi[StaffBatchQueryRequest, []StaffBatchQueryResultItem](http.MethodPost, "staff/batch/query", "staff.batch.query")(ctx, sqt.Client, &sqt.Config, req)
+type StaffBatchQueryResponse struct {
+	StaffQueryResultItems []StaffBatchQueryResultItem `json:"staffQueryResultItems"`
+}
+
+// 批量查询员工信息接口
+func (sqt *SQT) StaffBatchQuery(ctx context.Context, req *StaffBatchQueryRequest) (*StaffBatchQueryResponse, *http.Response, error) {
+	return sqtapi.WrappedApi[StaffBatchQueryRequest, StaffBatchQueryResponse](http.MethodPost, "staff/batch/query", "staff.batch.query")(ctx, sqt.Client, &sqt.Config, req)
 }
