@@ -33,5 +33,5 @@ type StaffBatchUpdateResponse struct {
 
 // 批量更新员工接口
 func (sqt *SQT) StaffBatchUpdate(ctx context.Context, req *StaffBatchUpdateRequest) (*StaffBatchUpdateResponse, *http.Response, error) {
-	return sqtapi.WrappedApi[StaffBatchUpdateRequest, StaffBatchUpdateResponse](http.MethodPost, "staff/batch/add", "staff.batch.add")(ctx, sqt.Client, &sqt.Config, req)
+	return sqtapi.WrappedApi[StaffBatchUpdateRequest, StaffBatchUpdateResponse](http.MethodPost, "staff/batch/update", "staff.batch.update")(ctx, sqt.Client, &sqt.Config, req)
 }

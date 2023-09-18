@@ -30,5 +30,5 @@ type StaffBatchDeleteResponse struct {
 
 // 批量删除员工接口
 func (sqt *SQT) StaffBatchDelete(ctx context.Context, req *StaffBatchDeleteRequest) (*StaffBatchDeleteResponse, *http.Response, error) {
-	return sqtapi.WrappedApi[StaffBatchDeleteRequest, StaffBatchDeleteResponse](http.MethodPost, "staff/batch/query", "staff.batch.query")(ctx, sqt.Client, &sqt.Config, req)
+	return sqtapi.WrappedApi[StaffBatchDeleteRequest, StaffBatchDeleteResponse](http.MethodPost, "staff/batch/delete", "staff.batch.delete")(ctx, sqt.Client, &sqt.Config, req)
 }
