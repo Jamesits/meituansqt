@@ -1,5 +1,12 @@
 package ecb
 
+import (
+	"crypto/aes"
+	"encoding/hex"
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
+
 type testSet struct {
 	key    string
 	plain  string
@@ -7,7 +14,6 @@ type testSet struct {
 }
 
 // https://github.com/ircmaxell/quality-checker/blob/63e91ea991ad98428e2bcced2c35492ca634cc28/tmp/gh_18/PHP-PasswordLib-master/test/Data/Vectors/aes-ecb.test-vectors
-
 var aesTestSets = []testSet{
 	{
 		key:    "2b7e151628aed2a6abf7158809cf4f3c",
@@ -70,4 +76,64 @@ var aesTestSets = []testSet{
 		plain:  "f69f2445df4f9b17ad2b417be66c3710",
 		cipher: "23304b7a39f9f3ff067d8d8f9e24ecc7",
 	},
+}
+
+func aesEncrypt(src []byte, key []byte) []byte {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic(err)
+	}
+	if len(src) == 0 {
+		return nil
+	}
+	ecb := NewECBEncrypter(block)
+	dst := make([]byte, len(src))
+	ecb.CryptBlocks(dst, src)
+	return dst
+}
+
+func TestAESEncryption(t *testing.T) {
+	for _, set := range aesTestSets {
+		key, err := hex.DecodeString(set.key)
+		assert.NoError(t, err)
+
+		plain, err := hex.DecodeString(set.plain)
+		assert.NoError(t, err)
+
+		cipher, err := hex.DecodeString(set.cipher)
+		assert.NoError(t, err)
+
+		enc := aesEncrypt(plain, key)
+		assert.EqualValues(t, cipher, enc)
+	}
+}
+
+func aesDecrypt(src []byte, key []byte) []byte {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		panic(err)
+	}
+	if len(src) == 0 {
+		return nil
+	}
+	ecb := NewECBDecrypter(block)
+	dst := make([]byte, len(src))
+	ecb.CryptBlocks(dst, src)
+	return dst
+}
+
+func TestAESDecryption(t *testing.T) {
+	for _, set := range aesTestSets {
+		key, err := hex.DecodeString(set.key)
+		assert.NoError(t, err)
+
+		plain, err := hex.DecodeString(set.plain)
+		assert.NoError(t, err)
+
+		cipher, err := hex.DecodeString(set.cipher)
+		assert.NoError(t, err)
+
+		dec := aesDecrypt(cipher, key)
+		assert.EqualValues(t, plain, dec)
+	}
 }
