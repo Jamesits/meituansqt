@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/jamesits/go-meituansqt/pkg/sqtobfuscate"
+	"github.com/jamesits/meituansqt/pkg/sqtobfuscate"
 	"io"
 	"net/http"
 	urllib "net/url"

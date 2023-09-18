@@ -1,4 +1,4 @@
-module github.com/jamesits/go-meituansqt
+module github.com/jamesits/meituansqt
 
 go 1.21
 

@@ -1,7 +1,7 @@
 package sqt
 
 import (
-	"github.com/jamesits/go-meituansqt/pkg/sqtapi"
+	"github.com/jamesits/meituansqt/pkg/sqtapi"
 	"net/http"
 )
 

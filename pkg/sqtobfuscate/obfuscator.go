@@ -10,8 +10,8 @@ import (
 	"crypto/aes"
 	"encoding/base64"
 	"fmt"
-	"github.com/jamesits/go-meituansqt/pkg/ecb"
-	"github.com/jamesits/go-meituansqt/pkg/pkcs5"
+	"github.com/jamesits/meituansqt/pkg/ecb"
+	"github.com/jamesits/meituansqt/pkg/pkcs5"
 )
 
 type Obfuscator struct {
