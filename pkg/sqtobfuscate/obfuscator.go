@@ -1,7 +1,8 @@
 // Package sqtobfuscate implements the API request obfuscation required by Meituan / Dianping BEP API.
 //
 // The official documentation uses "signing" and "encryption" in a rather unclear way, and the algorithm described
-// in the documentation is not signing nor encryption at all, thus we call it obfuscation here.
+// in the documentation is nether signing (no integrity verification, you can change the result without knowing the
+// secret key) nor encryption (known-plaintext attack possible) at all, thus we call it obfuscation here.
 //
 // Documentation: https://h5.dianping.com/app/bep-docs/sky-doc/api.html#_1-4-%E7%AD%BE%E5%90%8D%E6%96%B9%E6%B3%95
 package sqtobfuscate
