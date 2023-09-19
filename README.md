@@ -34,7 +34,7 @@ func main() {
     }
 	fmt.Printf("%v", resp)
 	
-	resp, _, err = s.StaffBatchQuery(context.Background(), &StaffBatchQueryRequest{
+	resp, _, err = s.StaffBatchQuery(context.Background(), &sqt.StaffBatchQueryRequest{
 		StaffIdType:      0,
 		StaffIdentifiers: []string{},
 	})
