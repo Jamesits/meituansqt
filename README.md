@@ -24,7 +24,7 @@ goreleaser build --clean --snapshot
 cat > .terraformrc <<EOF
 provider_installation {
     dev_overrides {
-        "registry.terraform.io/jamesits/meituansqt" = "path/to/meituansqt/dist/terraform-provider-meituansqt_windows_amd64_v1"
+        "registry.terraform.io/jamesits/meituansqt" = "path/to/meituansqt/dist/terraform-provider-meituansqt_linux_amd64_v1"
     }
     direct {}
 }
