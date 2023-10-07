@@ -82,20 +82,20 @@ func main() {
 	s := sqt.NewProduction(entId, accessKey, secretKey)
 
 	// 查询城市列表
-	resp, _, err := s.AllAdminDivisionQuery(context.Background())
+	resp1, _, err := s.AllAdminDivisionQuery(context.Background())
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%v", resp)
+	fmt.Printf("%v", resp1)
 
 	// 查询员工信息
-	resp, _, err = s.StaffBatchQuery(context.Background(), &sqt.StaffBatchQueryRequest{
+	resp2, _, err := s.StaffBatchQuery(context.Background(), &sqt.StaffBatchQueryRequest{
 		StaffIdType:      sqt.StaffIdTypePhone,
 		StaffIdentifiers: []string{"13800000000"},
 	})
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%v", resp)
+	fmt.Printf("%v", resp2)
 }
 ```
