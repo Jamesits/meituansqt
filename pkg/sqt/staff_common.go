@@ -16,9 +16,10 @@ const (
 )
 
 type StaffInfo struct {
+	StaffId       int64       `json:"staffId,omitempty"`       // 美团企业版员工ID
 	Name          string      `json:"name"`                    // 姓名(不能为空)
 	Gender        Gender      `json:"gender,omitempty"`        // 性别（0:未知；1:男；2:女）默认为"0:未知")
-	Phone         string      `json:"phone,omitempty"`         // 手机号，且需要企业内唯一。当手机号为企业唯一标识时，此字段必传
+	Phone         string      `json:"phone,omitempty"`         // 手机号，且需要企业内唯一。当手机号为企业唯一标识时，此字段必传（注：手机号不包含国家代码）
 	EntStaffNum   string      `json:"entStaffNum,omitempty"`   // 工号，且需要企业内唯一。当工号为企业唯一标识时，此字段必传
 	Email         string      `json:"email,omitempty"`         // 邮箱，且需要企业内唯一。当邮箱为企业唯一标识时，此字段必传
 	TaxNumber     string      `json:"taxNumber,omitempty"`     // 发票税号（需提前在企业后台添加发票信息）

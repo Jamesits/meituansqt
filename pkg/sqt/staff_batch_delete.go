@@ -7,11 +7,11 @@ import (
 )
 
 type StaffBatchDeleteRequest struct {
-	StaffIdType      int      `json:"staffIdType"`
-	StaffIdentifiers []string `json:"staffIdentifiers"`
+	StaffIdType      StaffIdType `json:"staffIdType"`
+	StaffIdentifiers []string    `json:"staffIdentifiers"`
 }
 
-type StaffDeleteResult int
+type StaffDeleteResult int64
 
 const (
 	StaffDeleteResultSucceed StaffDeleteResult = 0
@@ -25,7 +25,7 @@ type StaffDeleteResultItem struct {
 }
 
 type StaffBatchDeleteResponse struct {
-	StaffQueryResultItems []StaffDeleteResultItem `json:"StaffDeleteResultItems"`
+	StaffDeleteResultItems []StaffDeleteResultItem `json:"StaffDeleteResultItems"`
 }
 
 // 批量删除员工接口
