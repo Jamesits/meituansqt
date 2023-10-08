@@ -10,7 +10,7 @@ type StaffBatchUpdateRequest struct {
 	StaffInfos []StaffInfo `json:"staffInfos"` // 要更新的人员信息
 }
 
-type StaffUpdateResult int
+type StaffUpdateResult int32
 
 const (
 	StaffUpdateResultSucceed                  StaffUpdateResult = 0
@@ -21,7 +21,7 @@ const (
 type StaffUpdateResultItem struct {
 	Result      StaffUpdateResult `json:"result"`                // 是否成功更新 0-已成功 1-未成功 2-员工信息保存成功但证件信息保存失败
 	Msg         string            `json:"msg"`                   // 描述
-	StaffId     int64             `json:"staffId,omitempty"`     // 美团企业版员工ID
+	StaffId     int32             `json:"staffId,omitempty"`     // 美团企业版员工ID
 	EntStaffNum string            `json:"entStaffNum,omitempty"` // 员工工号
 	Phone       string            `json:"phone,omitempty"`       // 手机号
 	Email       string            `json:"email,omitempty"`       // 邮箱

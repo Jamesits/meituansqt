@@ -127,7 +127,7 @@ func (r *StaffResource) Create(ctx context.Context, req resource.CreateRequest, 
 		return
 	}
 
-	data.Id = types.Int64Value(apiResp.StaffAddResultItems[0].StaffId)
+	data.Id = types.Int64Value(int64(apiResp.StaffAddResultItems[0].StaffId))
 
 	// Write logs using the tflog package
 	// Documentation: https://terraform.io/plugin/log
@@ -176,7 +176,7 @@ func (r *StaffResource) Read(ctx context.Context, req resource.ReadRequest, resp
 		return
 	}
 
-	data.Id = types.Int64Value(apiResp.StaffQueryResultItems[0].StaffId)
+	data.Id = types.Int64Value(int64(apiResp.StaffQueryResultItems[0].StaffId))
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -195,7 +195,7 @@ func (r *StaffResource) Update(ctx context.Context, req resource.UpdateRequest, 
 	apiResp, _, err := r.sqtClient.StaffBatchUpdate(ctx, &sqt.StaffBatchUpdateRequest{
 		StaffInfos: []sqt.StaffInfo{
 			{
-				StaffId:     data.Id.ValueInt64(),
+				StaffId:     int32(data.Id.ValueInt64()),
 				Name:        data.Name.ValueString(),
 				Phone:       data.Phone.ValueString(),
 				EntStaffNum: data.EntStaffNum.ValueString(),
@@ -216,7 +216,7 @@ func (r *StaffResource) Update(ctx context.Context, req resource.UpdateRequest, 
 		return
 	}
 
-	data.Id = types.Int64Value(apiResp.StaffBatchUpdateResultItems[0].StaffId)
+	data.Id = types.Int64Value(int64(apiResp.StaffBatchUpdateResultItems[0].StaffId))
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)

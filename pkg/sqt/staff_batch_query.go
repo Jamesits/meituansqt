@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-type StaffIdType int64
+type StaffIdType int32
 
 const (
 	StaffIdTypeEmail       StaffIdType = 20
@@ -21,12 +21,12 @@ type StaffBatchQueryRequest struct {
 }
 
 type StaffBatchQueryResultItem struct {
-	StaffId       int64  `json:"staffId"`
+	StaffId       int32  `json:"staffId"`
 	EntStaffNum   string `json:"entStaffNum,omitempty"`
 	Phone         string `json:"phone,omitempty"`
 	Email         string `json:"email,omitempty"`
-	BindStatus    int64  `json:"bindStatus,omitempty"`
-	ParentStaffId int64  `json:"parentStaffId,omitempty"`
+	BindStatus    int32  `json:"bindStatus,omitempty"`
+	ParentStaffId int32  `json:"parentStaffId,omitempty"`
 	Level         string `json:"level,omitempty"`
 	UserId        string `json:"userId,omitempty"`
 }

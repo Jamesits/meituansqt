@@ -11,7 +11,7 @@ type StaffBatchDeleteRequest struct {
 	StaffIdentifiers []string    `json:"staffIdentifiers"`
 }
 
-type StaffDeleteResult int64
+type StaffDeleteResult int32
 
 const (
 	StaffDeleteResultSucceed StaffDeleteResult = 0

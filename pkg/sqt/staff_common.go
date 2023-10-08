@@ -1,6 +1,6 @@
 package sqt
 
-type Gender int
+type Gender int32
 
 const (
 	GenderUnknown Gender = 0
@@ -8,7 +8,7 @@ const (
 	GenderFemale  Gender = 2
 )
 
-type StaffStatus int
+type StaffStatus int32
 
 const (
 	StaffStatusEnabled  StaffStatus = 0
@@ -16,7 +16,7 @@ const (
 )
 
 type StaffInfo struct {
-	StaffId       int64       `json:"staffId,omitempty"`       // 美团企业版员工ID
+	StaffId       int32       `json:"staffId,omitempty"`       // 美团企业版员工ID
 	Name          string      `json:"name"`                    // 姓名(不能为空)
 	Gender        Gender      `json:"gender,omitempty"`        // 性别（0:未知；1:男；2:女）默认为"0:未知")
 	Phone         string      `json:"phone,omitempty"`         // 手机号，且需要企业内唯一。当手机号为企业唯一标识时，此字段必传（注：手机号不包含国家代码）
@@ -26,14 +26,14 @@ type StaffInfo struct {
 	City          string      `json:"city,omitempty"`          // 员工所属城市
 	CityId        string      `json:"cityId,omitempty"`        // 城市id（国标）
 	Level         string      `json:"level,omitempty"`         // 职级
-	ParentStaffId int         `json:"parentStaffId,omitempty"` // 上级美团企业版员工ID
-	NotifyStaffId int         `json:"notifyStaffId,omitempty"` // 消费通知接收人美团企业版员工ID
+	ParentStaffId int32       `json:"parentStaffId,omitempty"` // 上级美团企业版员工ID
+	NotifyStaffId int32       `json:"notifyStaffId,omitempty"` // 消费通知接收人美团企业版员工ID
 	UserId        string      `json:"userId,omitempty"`        // 企业员工在第三方平台（如钉钉、企微等）上的唯一标识，如有传值，需要企业内唯一，当需要从钉钉或企微生态平台单点登录美团企业版时，此字段必传
 	StaffStatus   StaffStatus `json:"staffStatus,omitempty"`   // 员工在职状态(0:在职；3:停用)
 	CardInfos     []CardInfo  `json:"cardInfos,omitempty"`     // 员工证件信息列表
 }
 
-type CardType int
+type CardType int32
 
 const (
 	CardTypePrcId CardType = 0

@@ -10,7 +10,7 @@ type StaffBatchAddRequest struct {
 	StaffInfos []StaffInfo `json:"staffInfos"` // 添加到美团企业版的人员信息
 }
 
-type StaffAddResult int
+type StaffAddResult int32
 
 const (
 	StaffAddResultSucceed                  StaffAddResult = 0
@@ -21,7 +21,7 @@ const (
 type StaffAddResultItem struct {
 	Result      StaffAddResult `json:"result"`                // 是否成功添加 0-已成功 1-未成功 2-员工信息保存成功但证件信息保存失败）
 	Msg         string         `json:"msg"`                   // 描述
-	StaffId     int64          `json:"staffId,omitempty"`     // 美团企业版员工ID
+	StaffId     int32          `json:"staffId,omitempty"`     // 美团企业版员工ID
 	EntStaffNum string         `json:"entStaffNum,omitempty"` // 员工工号
 	Phone       string         `json:"phone,omitempty"`       // 手机号
 	Email       string         `json:"email,omitempty"`       // 邮箱
