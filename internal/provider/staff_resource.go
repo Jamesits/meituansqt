@@ -254,7 +254,24 @@ func (r *StaffResource) ImportState(ctx context.Context, req resource.ImportStat
 		resp.Diagnostics.AddError("Unable to parse ID", fmt.Sprintf("error: %v", err))
 		return
 	}
+
+	apiResp, _, err := r.sqtClient.StaffBatchQuery(ctx, &sqt.StaffBatchQueryRequest{
+		StaffIdType:      sqt.StaffIdTypeStaffId,
+		StaffIdentifiers: []string{req.ID},
+	})
+	if err != nil {
+		resp.Diagnostics.AddError("HTTP Request Error", fmt.Sprintf("Unable to create staff, got error: %s", err))
+		return
+	}
+	if apiResp == nil || apiResp.StaffQueryResultItems == nil || len(apiResp.StaffQueryResultItems) != 1 {
+		resp.Diagnostics.AddError("API Error", fmt.Sprintf("Unable to query staff, API returns: %v", apiResp))
+		return
+	}
+
 	data.Id = types.Int64Value(id)
+	data.Email = types.StringValue(apiResp.StaffQueryResultItems[0].Email)
+	data.Phone = types.StringValue(apiResp.StaffQueryResultItems[0].Phone)
+	data.EntStaffNum = types.StringValue(apiResp.StaffQueryResultItems[0].EntStaffNum)
 
 	// resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
