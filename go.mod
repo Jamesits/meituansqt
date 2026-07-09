@@ -1,8 +1,6 @@
 module github.com/jamesits/meituansqt
 
-go 1.25.8
-
-toolchain go1.26.4
+go 1.26.5
 
 require (
 	github.com/hashicorp/terraform-plugin-docs v0.25.0
